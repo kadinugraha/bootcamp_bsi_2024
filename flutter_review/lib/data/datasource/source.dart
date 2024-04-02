@@ -1,3 +1,3 @@
 abstract class Source{
-  void login();
+  Future<String> login(Map<String, dynamic> user);
 }
