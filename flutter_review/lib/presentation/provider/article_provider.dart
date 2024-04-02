@@ -8,25 +8,14 @@ import '../../domain/entities/user.dart';
 
 class ArticleProvider extends ChangeNotifier{
   var listArticle = <Article>[];
-  final storage = new FlutterSecureStorage();
   SharedPreferences? prefs = null;
-  var user = User(username: '', token: '');
 
-  ArticleProvider(){
-    init();
-  }
-
-  Future<void> init() async{
+  void getArticles() async{
     prefs = await SharedPreferences.getInstance();
-    var token = prefs?.getString('token') ?? '';
-    var username = prefs?.getString('username') ?? '-';
-    user.username = username;
-    user.token = token;
-  }
+    var username = await prefs?.getString('username') ?? '';
+    var token = await prefs?.getString('token') ?? '';
 
-  void getArticles(String token) async{
-    user.token = token;
-    listArticle = await GetArticles().execute(user);
+    listArticle = await GetArticles().execute(User(username: username, token: token));
     notifyListeners();
   }
 }

@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class ArticlePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Provider.of<ArticleProvider>(context, listen: false).getArticles(Provider.of<UserProvider>(context, listen: false).token);
+    Provider.of<ArticleProvider>(context, listen: false).getArticles();
 
     return Scaffold(
       body: Consumer<ArticleProvider>(
@@ -20,7 +20,7 @@ class ArticlePage extends StatelessWidget {
                   GestureDetector(
                     onTap: (){
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(provider.listArticle[i].title)));
-                    },
+                      },
                     child: Card(
                       child: Column(
                         children: [

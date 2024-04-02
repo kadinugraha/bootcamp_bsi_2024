@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_review/presentation/provider/user_provider.dart';
 import 'package:flutter_review/presentation/ui/article_page.dart';
