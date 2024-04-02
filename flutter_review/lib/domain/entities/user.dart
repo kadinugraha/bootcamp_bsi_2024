@@ -24,4 +24,8 @@ class User{
       'token': this.token
     };
   }
+
+  void info(){
+    print('username: $username, token: $token');
+  }
 }
