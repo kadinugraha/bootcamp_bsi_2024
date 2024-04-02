@@ -1,7 +1,11 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_review/data/datasource/test_source.dart';
 import 'package:flutter_review/presentation/login_page.dart';
+import 'package:flutter_review/presentation/user_provider.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 import 'data/datasource/production_source.dart';
 import 'data/datasource/source.dart';
@@ -14,7 +18,14 @@ void setup(){
 
 void main() {
   setup();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => UserProvider())
+        ],
+      child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -20,4 +20,15 @@ class ProductionSource extends Source{
     );
     return response.body;
   }
+
+  Future<String> getArticles(Map<String, dynamic> user) async{
+    var response = await http.get(
+        Uri.parse('$URL/Articles'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer ${user['token']}'
+        }
+    );
+    return response.body;
+  }
 }

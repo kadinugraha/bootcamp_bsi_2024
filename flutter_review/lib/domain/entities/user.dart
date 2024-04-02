@@ -20,7 +20,8 @@ class User{
   Map<String, dynamic> toJson(){
     return {
       'username': this.username,
-      'password': this.password
+      'password': this.password,
+      'token': this.token
     };
   }
 }

@@ -1,18 +1,10 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_review/presentation/user_provider.dart';
+import 'package:provider/provider.dart';
 
-import '../domain/entities/user.dart';
-import '../domain/use_cases/login.dart';
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
+class LoginPage extends StatelessWidget {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -24,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
           TextField(
             controller: _usernameController,
             decoration: InputDecoration(
-              labelText: 'username'
+                labelText: 'username'
             ),
           ),
           TextField(
@@ -36,10 +28,10 @@ class _LoginPageState extends State<LoginPage> {
           ),
           OutlinedButton(
               onPressed: () async{
-                var user = User(username: _usernameController.text, token: '');
-                user.password = _passwordController.text;
-                user = await Login().execute(user);
-                print(user.token);
+                Provider.of<UserProvider>(context, listen: false).login(
+                    _usernameController.text,
+                    _passwordController.text
+                );
               },
               child: Text('Login')
           )
